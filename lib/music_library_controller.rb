@@ -70,7 +70,7 @@ class MusicLibraryController
     list_songs
     user_input = gets.strip
     # list_of_songs = list_songs
-      if user_input > 0 && user_input <= list_of_songs.size && list_of_songs
+      if user_input > 0 && user_input <= Song.all.size
         song = Song.all.sort! {|a, b| a.name <=> b.name}
         puts "Playing #{song[user_input-=1].name} by #{song[user_input-=1].artist.name}"
       end
