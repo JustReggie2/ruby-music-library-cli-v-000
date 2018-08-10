@@ -74,7 +74,8 @@ class MusicLibraryController
       if user_input > 0 && user_input <= Song.all.size
         Song.all.sort! {|a, b| a.name <=> b.name}
         Song.all.each do |song|
-        puts "Playing #{song[user_input-=1].name} by #{song[user_input-=1].artist.name}"
+          puts "Playing #{song[user_input-=1].name} by #{song[user_input-=1].artist.name}"
+        end 
       end
 
 
