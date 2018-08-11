@@ -36,59 +36,60 @@ class MusicLibraryController
       end
 
     end
-  end
+  # end
 
-  def list_songs
-    Song.all.sort! {|a, b| a.name <=> b.name}
-    Song.all.each_with_index do |song, index|
-      puts "#{index+=1}. #{song.artist.name} - #{song.name} - #{song.genre.name}"
-    end
-  end
-
-  def list_artists
-    Artist.all.sort! {|a, b| a.name <=> b.name}
-    Artist.all.each_with_index do |artist, index|
-      puts "#{index+=1}. #{artist.name}"
-    end
-  end
-
-  def list_genres
-    Genre.all.sort! {|a, b| a.name <=> b.name}
-    Genre.all.each_with_index do |genre, index|
-      puts "#{index+=1}. #{genre.name}"
-    end
-  end
-
-  def list_songs_by_artist
-    puts "Please enter the name of an artist:"
-    user_input = gets.strip
-    if Artist.find_by_name(user_input) # how to change string into artist variable ??
-      # has to be a better way to refractor this code??
-      artist_songs = Artist.find_by_name(user_input).songs.sort! {|a, b| a.name <=> b.name}
-      artist_songs.each_with_index do |song, index|
-        puts "#{index+=1}. #{song.name} - #{song.genre.name}"
+    def list_songs
+      Song.all.sort! {|a, b| a.name <=> b.name}
+      Song.all.each_with_index do |song, index|
+        puts "#{index+=1}. #{song.artist.name} - #{song.name} - #{song.genre.name}"
       end
     end
-  end
 
-  def list_songs_by_genre
-    puts "Please enter the name of a genre:"
-    user_input = gets.strip
-    if Genre.find_by_name(user_input)
-      genre_songs = Genre.find_by_name(user_input).songs.sort! {|a, b| a.name <=> b.name}
-      genre_songs.each_with_index do |song, index|
-        puts "#{index+=1}. #{song.artist.name} - #{song.name}"
+    def list_artists
+      Artist.all.sort! {|a, b| a.name <=> b.name}
+      Artist.all.each_with_index do |artist, index|
+        puts "#{index+=1}. #{artist.name}"
       end
     end
-  end
 
-  def play_song
-    puts "Which song number would you like to play?"
-    user_input = gets.strip.to_i
-    # binding.pry
-    if user_input > 0 && user_input <= Song.all.size
-      song = Song.all.sort! {|a, b| a.name <=> b.name}
-        puts "Playing #{song[user_input-=1].name} by #{song[user_input].artist.name}" # come back to figure out why -=1 and nothing pull the right song??
+    def list_genres
+      Genre.all.sort! {|a, b| a.name <=> b.name}
+      Genre.all.each_with_index do |genre, index|
+        puts "#{index+=1}. #{genre.name}"
+      end
+    end
+
+    def list_songs_by_artist
+      puts "Please enter the name of an artist:"
+      user_input = gets.strip
+      if Artist.find_by_name(user_input) # how to change string into artist variable ??
+        # has to be a better way to refractor this code??
+        artist_songs = Artist.find_by_name(user_input).songs.sort! {|a, b| a.name <=> b.name}
+        artist_songs.each_with_index do |song, index|
+          puts "#{index+=1}. #{song.name} - #{song.genre.name}"
+        end
+      end
+    end
+
+    def list_songs_by_genre
+      puts "Please enter the name of a genre:"
+      user_input = gets.strip
+      if Genre.find_by_name(user_input)
+        genre_songs = Genre.find_by_name(user_input).songs.sort! {|a, b| a.name <=> b.name}
+        genre_songs.each_with_index do |song, index|
+          puts "#{index+=1}. #{song.artist.name} - #{song.name}"
+        end
+      end
+    end
+
+    def play_song
+      puts "Which song number would you like to play?"
+      user_input = gets.strip.to_i
+      # binding.pry
+      if user_input > 0 && user_input <= Song.all.size
+        song = Song.all.sort! {|a, b| a.name <=> b.name}
+          puts "Playing #{song[user_input-=1].name} by #{song[user_input].artist.name}" # come back to figure out why -=1 and nothing pull the right song??
+      end
     end
   end
 end
