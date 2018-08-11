@@ -20,7 +20,7 @@ class MusicLibraryController
       puts "What would you like to do?"
       user_input = gets.strip
     end
-  end
+  # end
 
   def list_songs
     Song.all.sort! {|a, b| a.name <=> b.name}
