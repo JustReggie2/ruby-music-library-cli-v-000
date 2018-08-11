@@ -73,7 +73,3 @@ class MusicLibraryController
     if user_input > 0 && user_input <= Song.all.size
       song = Song.all.sort! {|a, b| a.name <=> b.name}
         puts "Playing #{song[user_input-=1].name} by #{song[user_input].artist.name # come back to figure out why -=1 and nothing pull the right song??
-
-
-  
-end
